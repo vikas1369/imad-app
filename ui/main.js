@@ -13,5 +13,6 @@ button.onclick=function(){
       }  
       //Not done
     };
-    request.open('GET','http://dovikas1369.imad.hasura-app.io/counter');
+    request.open('GET','http://dovikas1369.imad.hasura-app.io/counter',true);
+    request.send(null);
 };
