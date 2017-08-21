@@ -92,10 +92,10 @@ app.get('/counter',function(req,res){
     counter+=1;
     res.send(counter.toString());
 });
-app.get('/submit-name/:name',function(req,res){//URL: /submit-name?name=xxxx
+app.get('/submit-name',function(req,res){//URL: /submit-name?name=xxxx
     var name=req.query.name;
     names.push(name);
-    console.log(names);
+    //console.log(names);
     res.send(JSON.stringify(names));
 });
 app.get('/article1',function(req,res){
