@@ -121,7 +121,10 @@ app.get('/test-db',function(req,res){
 app.get('/articles/:articleName',function(req,res){
     var articleName=req.params.articleName;
     //Previously, before adding single quote it was taking article-one as article and one as two separate columns
-    pool.query("SELECT * FROM article WHERE title='"+req.params.articleName+"'",function(err,result){
+    //SQL Injection possible here
+    //'; DELETE FROM article WHERE title='article-three
+    //"SELECT * FROM article WHERE title='"+req.params.articleName+"'"
+    pool.query("SELECT * FROM article WHERE title=$1",[req.params.articleName],function(err,result){
        if(err){
            res.status(500).send(err.toString());
        } else{
