@@ -207,6 +207,10 @@ app.get('/check-login',function(req,res){
          res.send("You are not logged in");
     }
 });
+app.get('/logout',function(req,res){
+   delete req.session.auth;//delete session object
+   res.send("You are not logged in");
+});
 function hash(input,salt){
     //How do we create hash
     var hashed=crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
