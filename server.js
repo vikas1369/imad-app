@@ -209,7 +209,7 @@ app.get('/check-login',function(req,res){
 });
 app.get('/logout',function(req,res){
    delete req.session.auth;//delete session object
-   res.send("You are not logged in");
+   res.send("Logged out");
 });
 function hash(input,salt){
     //How do we create hash
