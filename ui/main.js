@@ -1,5 +1,5 @@
 //counter code
-var button=document.getElementById('counter');
+/*var button=document.getElementById('counter');
 button.onclick=function(){
     var request=new XMLHttpRequest();
     request.onreadystatechange=function(){
@@ -15,7 +15,9 @@ button.onclick=function(){
     };
     request.open('GET','http://dovikas1369.imad.hasura-app.io/counter',true);
     request.send(null);
-};
+};*/
+
+//sumbit username password to login
 
 //submit name
 
@@ -25,23 +27,25 @@ submit.onclick=function(){
     request.onreadystatechange=function(){
       if(request.readyState === XMLHttpRequest.DONE){
           if(request.status === 200){
-            var names=request.responseText;
-            names=JSON.parse(names);
-            var list='';
-            for(var i=0;i<names.length;i++){
-                list+="<li>"+names[i]+"</li>";
-            }
-            var ul=document.getElementById('namelist');
-            ul.innerHTML=list;  
+            console.log("User is logged in");
+            alert('Login successful');
+          }else if(request.status===403){
+                  alert("username or password is incorrect");
           }
+          else if(request.status===500){
+              alert("Something went wrong on the server");
+          } 
+         
           //take some action
       }  
       //Not done
     };
-    var nameInput=document.getElementById('name');
-    var name=nameInput.value;
-    request.open('GET','http://dovikas1369.imad.hasura-app.io/submit-name?name='+name,true);
-    request.send(null);
+    var username=document.getElementById('username').value;
+    var password=document.getElementById('password').value;
+    console.log(username+'\n'+password);
+    request.open('POST','http://dovikas1369.imad.hasura-app.io/login'+name,true);
+    request.setRequestHeader('Content-type','application/json');
+    request.send(JSON.stringify({username:username,password:password}));
     //Make a requst to the server and send the name
    
 };
